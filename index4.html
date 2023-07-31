@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <title>Email</title>
+    <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
+    <meta content="Themesdesign" name="author" />
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+
+    <link href="css/metismenu.min.css" rel="stylesheet" type="text/css">
+    <link href="css/icons.css" rel="stylesheet" type="text/css">
+    <link href="css/email.css" rel="stylesheet" type="text/css">
+
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <!--[if !mso]><!-->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <!--<![endif]-->
+    <!--[if (gte mso 9)|(IE)]>
+          <xml>
+            <o:OfficeDocumentSettings>
+              <o:AllowPNG/>
+              <o:PixelsPerInch>96</o:PixelsPerInch>
+            </o:OfficeDocumentSettings>
+          </xml>
+          <![endif]-->
+    <!--[if (gte mso 9)|(IE)]>
+      <style type="text/css">
+        body {width: 600px;margin: 0 auto;}
+        table {border-collapse: collapse;}
+        table, td {mso-table-lspace: 0pt;mso-table-rspace: 0pt;}
+        img {-ms-interpolation-mode: bicubic;}
+      </style>
+    <![endif]-->
+    <style type="text/css">
+        body,
+        p,
+        div {
+            font-family: arial, helvetica, sans-serif;
+            font-size: 16px;
+        }
+
+        body {
+            color: #3C3D45;
+        }
+
+        body a {
+            color: #30C3E2;
+            text-decoration: none;
+        }
+
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        table.wrapper {
+            width: 100% !important;
+            table-layout: fixed;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-size-adjust: 100%;
+            -moz-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        img.max-width {
+            max-width: 100% !important;
+        }
+
+        .column.of-2 {
+            width: 50%;
+        }
+
+        .column.of-3 {
+            width: 33.333%;
+        }
+
+        .column.of-4 {
+            width: 25%;
+        }
+
+        @media screen and (max-width:480px) {
+
+            .preheader .rightColumnContent,
+            .footer .rightColumnContent {
+                text-align: left !important;
+            }
+
+            .preheader .rightColumnContent div,
+            .preheader .rightColumnContent span,
+            .footer .rightColumnContent div,
+            .footer .rightColumnContent span {
+                text-align: left !important;
+            }
+
+            .preheader .rightColumnContent,
+            .preheader .leftColumnContent {
+                font-size: 80% !important;
+                padding: 5px 0;
+            }
+
+            table.wrapper-mobile {
+                width: 100% !important;
+                table-layout: fixed;
+            }
+
+            img.max-width {
+                height: auto !important;
+                max-width: 100% !important;
+            }
+
+            a.bulletproof-button {
+                display: block !important;
+                width: auto !important;
+                font-size: 80%;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+
+            .columns {
+                width: 100% !important;
+            }
+
+            .column {
+                display: block !important;
+                width: 100% !important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+            }
+
+            .social-icon-column {
+                display: inline-block !important;
+            }
+        }
+    </style>
+    <!--user entered Head Start-->
+    <style type="text/css">
+        img.img-fluid.max-width-header {
+            width: 100%;
+            max-width: 70%;
+        }
+    </style>
+    <!--End Head user entered-->
+</head>
+
+<body class="custom-email">
+
+
+
+    <div class="wrapper">
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="page-title-box">
+                <div class="row align-items-center">
+                    <div class="col-sm-6">
+                        <h4 class="page-title">Email Read</h4>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-right">
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Your Mail</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Email</a></li>
+                            <li class="breadcrumb-item active">Email Read</li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <!-- Left sidebar -->
+                    <div class="email-leftbar card">
+                        <a href="email-compose.html"
+                            class="btn btn-danger rounded btn-custom btn-block waves-effect waves-light">Compose</a>
+
+                        <h6 class="m-t-30">My Email</h6>
+
+                        <div class="mail-list m-t-10">
+                            <a href="#" class="active"> <span class="float-right">89</span> <i
+                                    class="ti-archive mr-2"></i> Inbox </a>
+                            <a href="#"><span class="float-right">24</span><i class="ti-location-arrow mr-2"></i>
+                                Sent</a>
+                            <a href="#"><span class="float-right">48</span><i class="ti-star mr-2"></i> Starred</a>
+                            <a href="#"><span class="float-right">72</span><i class="ti-pencil  mr-2"></i> Draft</a>
+                            <a href="#"><span class="float-right">16</span><i class="ti-alert mr-2"></i> Spam</a>
+                            <a href="#"><span class="float-right">02</span><i class="ti-trash mr-2"></i> Deleted</a>
+                        </div>
+
+                        <h6 class="m-t-20">Filter by Labels</h6>
+
+                        <div class="mail-list m-t-10">
+                            <a href="#"><span class="mdi mdi-label-outline text-danger mr-2"></span>Freelance</a>
+                            <a href="#"><span class="mdi mdi-label-outline text-info mr-2"></span>Social</a>
+                            <a href="#"><span class="mdi mdi-label-outline text-primary mr-2"></span>Friends</a>
+                            <a href="#"><span class="mdi mdi-label-outline text-success mr-2"></span>Family</a>
+                        </div>
+
+                    </div>
+                    <!-- End Left sidebar -->
+
+                    <!-- Right Sidebar -->
+                    <div class="email-rightbar mb-3">
+
+                        <div class="card">
+
+                            <div class="row p-3">
+                                <div class="col-lg-4">
+                                    <form role="search" class="email-inbox">
+                                        <div class="form-group mb-0">
+                                            <input type="text" class="form-control rounded"
+                                                placeholder="Search Your mail..">
+                                            <button type="submit"><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="col-lg-8">
+                                    <div class="btn-toolbar float-lg-right" role="toolbar">
+                                        <div class="btn-group mo-mb-2">
+                                            <button type="button" class="btn btn-primary waves-light waves-effect"><i
+                                                    class="fa fa-inbox"></i></button>
+                                            <button type="button" class="btn btn-primary waves-light waves-effect"><i
+                                                    class="fa fa-exclamation-circle"></i></button>
+                                            <button type="button" class="btn btn-primary waves-light waves-effect"><i
+                                                    class="far fa-trash-alt"></i></button>
+                                        </div>
+                                        <div class="btn-group ml-1 mo-mb-2">
+                                            <button type="button"
+                                                class="btn btn-primary waves-light waves-effect dropdown-toggle"
+                                                data-toggle="dropdown" aria-expanded="false">
+                                                <i class="fa fa-folder"></i>
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="#">Updates</a>
+                                                <a class="dropdown-item" href="#">Social</a>
+                                                <a class="dropdown-item" href="#">Team Manage</a>
+                                            </div>
+                                        </div>
+                                        <div class="btn-group ml-1 mo-mb-2">
+                                            <button type="button"
+                                                class="btn btn-primary waves-light waves-effect dropdown-toggle"
+                                                data-toggle="dropdown" aria-expanded="false">
+                                                <i class="fa fa-tag"></i>
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="#">Updates</a>
+                                                <a class="dropdown-item" href="#">Social</a>
+                                                <a class="dropdown-item" href="#">Team Manage</a>
+                                            </div>
+                                        </div>
+
+                                        <div class="btn-group ml-1 mo-mb-2">
+                                            <button type="button"
+                                                class="btn btn-primary waves-light waves-effect dropdown-toggle"
+                                                data-toggle="dropdown" aria-expanded="false">
+                                                More
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="#">Mark as Unread</a>
+                                                <a class="dropdown-item" href="#">Mark as Important</a>
+                                                <a class="dropdown-item" href="#">Add to Tasks</a>
+                                                <a class="dropdown-item" href="#">Add Star</a>
+                                                <a class="dropdown-item" href="#">Mute</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="card-body">
+
+                                <div class="media m-b-30">
+                                    <img class="d-flex mr-3 rounded-circle thumb-md" src="images/users/user-3.jpg"
+                                        alt="Generic placeholder image">
+                                    <div class="media-body align-self-center">
+                                        <h4 class="font-14 m-0">John Doe</h4>
+                                        <small class="text-muted">johndoe@email.com</small>
+                                    </div>
+                                </div>
+
+                                <h4 class="mt-0 font-16">Congrats! Your are activated.</h4>
+<center class="wrapper" data-link-color="#30C3E2"
+    data-body-style="font-size:16px; font-family:arial,helvetica,sans-serif; color:#3C3D45; background-color:#f8f8f8;">
+    <div class="webkit">
+        <table cellpadding="0" cellspacing="0" border="0" width="100%" class="wrapper" bgcolor="#f8f8f8">
+            <tr>
+                <td valign="top" bgcolor="#f8f8f8" width="100%">
+                    <table width="100%" role="content-container" class="outer" align="center" cellpadding="0"
+                        cellspacing="0" border="0">
+                        <tr>
+                            <td width="100%">
+                                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                    <tr>
+                                        <td>
+                                            <!--[if mso]>
+    <center>
+    <table><tr><td width="600">
+  <![endif]-->
+                                            <table width="100%" cellpadding="0" cellspacing="0" border="0"
+                                                style="width:100%; max-width:600px;" align="center">
+                                                <tr>
+                                                    <td role="modules-container"
+                                                        style="padding:0px 0px 0px 0px; color:#3C3D45; text-align:left;"
+                                                        bgcolor="#f8f8f8" width="100%" align="left">
+                                                        <table class="module preheader preheader-hide" role="module"
+                                                            data-type="preheader" border="0" cellpadding="0"
+                                                            cellspacing="0" width="100%"
+                                                            style="display: none !important; mso-hide: all; visibility: hidden; opacity: 0; color: transparent; height: 0; width: 0;">
+                                                            <tr>
+                                                                <td role="module-content">
+                                                                    <p></p>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                        <table border="0" cellpadding="0" cellspacing="0" align="center"
+                                                            width="100%" role="module" data-type="columns"
+                                                            style="padding:0px 16px 0px 16px;" bgcolor="#FFFFFF">
+                                                            <tbody>
+                                                                <tr role="module-content">
+                                                                    <td height="100%" valign="top">
+                                                                        <table width="176"
+                                                                            style="width:176px; border-spacing:0; border-collapse:collapse; margin:0px 10px 0px 0px;"
+                                                                            cellpadding="0" cellspacing="0" align="left"
+                                                                            border="0" bgcolor=""
+                                                                            class="column column-0">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td
+                                                                                        style="padding:0px;margin:0px;border-spacing:0;">
+                                                                                        <table class="wrapper"
+                                                                                            role="module"
+                                                                                            data-type="image" border="0"
+                                                                                            cellpadding="0"
+                                                                                            cellspacing="0" width="100%"
+                                                                                            style="table-layout: fixed;"
+                                                                                            data-muid="079e71f8-016d-40e1-895d-fbb5d141ac95">
+                                                                                            <tbody>
+                                                                                                <tr>
+                                                                                                    <td style="font-size:6px; line-height:10px; padding:16px;”
+                                                                                                            valign="
+                                                                                                        top"
+                                                                                                        align="center">
+                                                                                                        <img class="max-width"
+                                                                                                            border="0"
+                                                                                                            style="display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px; max-width:100% !important; width:100%; height:auto !important;"
+                                                                                                            width="176"
+                                                                                                            alt=""
+                                                                                                            data-proportionally-constrained="true"
+                                                                                                            data-responsive="true"
+                                                                                                            src="images/asombroso@2x.svg">
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                        <table width="176"
+                                                                            style="width:176px; border-spacing:0; border-collapse:collapse; margin:0px 10px 0px 10px;"
+                                                                            cellpadding="0" cellspacing="0" align="left"
+                                                                            border="0" bgcolor=""
+                                                                            class="column column-1">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td
+                                                                                        style="padding:0px;margin:0px;border-spacing:0;">
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                        <table width="176"
+                                                                            style="width:176px; border-spacing:0; border-collapse:collapse; margin:0px 0px 0px 10px;"
+                                                                            cellpadding="0" cellspacing="0" align="left"
+                                                                            border="0" bgcolor=""
+                                                                            class="column column-2">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td
+                                                                                        style="padding:0px;margin:0px;border-spacing:0;">
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <table border="0" cellpadding="0" cellspacing="0" align="center"
+                                                            width="100%" role="module" data-type="columns"
+                                                            style="padding:24px 18px 24px 18px;" bgcolor="#FFFFFF">
+                                                            <tbody>
+                                                                <tr role="module-content">
+                                                                    <td height="100%" valign="top">
+                                                                        <table width="544"
+                                                                            style="width:544px; border-spacing:0; border-collapse:collapse; margin:0px 10px 0px 10px;"
+                                                                            cellpadding="0" cellspacing="0" align="left"
+                                                                            border="0" bgcolor=""
+                                                                            class="column column-0">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td
+                                                                                        style="padding:0px;margin:0px;border-spacing:0;">
+                                                                                        <table class="wrapper"
+                                                                                            role="module"
+                                                                                            data-type="image" border="0"
+                                                                                            cellpadding="0"
+                                                                                            cellspacing="0" width="100%"
+                                                                                            style="table-layout: fixed;"
+                                                                                            data-muid="a98a11ba-bdf8-4de5-861d-df4d88212146">
+                                                                                            <tbody>
+                                                                                                <tr>
+                                                                                                    <td style="font-size:6px; line-height:10px; padding:24px 24px 24px 24px;"
+                                                                                                        valign="top"
+                                                                                                        align="center">
+                                                                                                        <img class="max-width"
+                                                                                                            border="0"
+                                                                                                            style="display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px; max-width:100% !important; width:100%; height:auto !important;"
+                                                                                                            width="544"
+                                                                                                            alt=""
+                                                                                                            data-proportionally-constrained="true"
+                                                                                                            data-responsive="true"
+                                                                                                            src="images/welcome.svg">
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                        <table class="module"
+                                                                                            role="module"
+                                                                                            data-type="text" border="0"
+                                                                                            cellpadding="0"
+                                                                                            cellspacing="0" width="100%"
+                                                                                            style="table-layout: fixed;"
+                                                                                            data-muid="353ce58c-5222-45a9-a60b-95a5f2ba3084"
+                                                                                            data-mc-module-version="2019-10-22">
+                                                                                            <tbody>
+                                                                                                <tr>
+                                                                                                    <td style="padding:0; line-height:24px; text-align:center; background-color:#ffffff;"
+                                                                                                        height="100%"
+                                                                                                        valign="top"
+                                                                                                        bgcolor="#ffffff"
+                                                                                                        role="module-content">
+                                                                                                        <div>
+                                                                                                            <h2>Welcome
+                                                                                                                test@gmail.com
+                                                                                                            </h2>
+                                                                                                            <div
+                                                                                                                style="font-family: inherit; text-align: center">
+                                                                                                                You now
+                                                                                                                have
+                                                                                                                access
+                                                                                                                to
+                                                                                                                biosamples
+                                                                                                            </div>
+                                                                                                            <div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                        <table class="module"
+                                                                                            role="module"
+                                                                                            data-type="spacer"
+                                                                                            border="0" cellpadding="0"
+                                                                                            cellspacing="0" width="100%"
+                                                                                            style="table-layout: fixed;"
+                                                                                            data-muid="75dc1a7e-41a8-4e16-976d-6abfc9c8a307">
+                                                                                            <tbody>
+                                                                                                <tr>
+                                                                                                    <td style="padding:0px 0px 30px 0px;"
+                                                                                                        role="module-content"
+                                                                                                        bgcolor="">
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                        <table border="0"
+                                                                                            cellpadding="0"
+                                                                                            cellspacing="0"
+                                                                                            class="module"
+                                                                                            data-role="module-button"
+                                                                                            data-type="button"
+                                                                                            role="module"
+                                                                                            style="table-layout:fixed;"
+                                                                                            width="100%"
+                                                                                            data-muid="41184b0f-d591-4c6b-9fbc-90976139789e">
+                                                                                            <tbody>
+                                                                                                <tr>
+                                                                                                    <td align="center"
+                                                                                                        bgcolor=""
+                                                                                                        class="outer-td"
+                                                                                                        style="padding:0px 0px 0px 0px;">
+                                                                                                        <table
+                                                                                                            border="0"
+                                                                                                            cellpadding="0"
+                                                                                                            cellspacing="0"
+                                                                                                            class="wrapper-mobile"
+                                                                                                            style="text-align:center;">
+                                                                                                            <tbody>
+                                                                                                                <tr>
+                                                                                                                    <td align="center"
+                                                                                                                        bgcolor="#0030F5"
+                                                                                                                        class="inner-td"
+                                                                                                                        style="border-radius:6px; font-size:16px; text-align:center; background-color:inherit;">
+                                                                                                                        <a href="../laboratory-asombroso/index.html?biosampleId=12345678&timestamp=1603919060&signature=0x10872409387409"
+                                                                                                                            style="background-color:#0030F5; border:1px solid #0030F5; border-color:#0030F5; border-radius:100px; border-width:1px; color:#ffffff; display:inline-block; font-size:14px; font-weight:normal; letter-spacing:0px; line-height:normal; padding:12px 18px 12px 18px; text-align:center; text-decoration:none; border-style:solid;"
+                                                                                                                            target="_blank">View
+                                                                                                                            Biosample</a>
+                                                                                                                    </td>
+                                                                                                                </tr>
+                                                                                                            </tbody>
+                                                                                                        </table>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                        <table class="module"
+                                                                                            role="module"
+                                                                                            data-type="spacer"
+                                                                                            border="0" cellpadding="0"
+                                                                                            cellspacing="0" width="100%"
+                                                                                            style="table-layout: fixed;"
+                                                                                            data-muid="75dc1a7e-41a8-4e16-976d-6abfc9c8a307">
+                                                                                            <tbody>
+                                                                                                <tr>
+                                                                                                    <td style="padding:0px 0px 30px 0px;"
+                                                                                                        role="module-content"
+                                                                                                        bgcolor="">
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+
+                                                        <div data-role="module-unsubscribe" class="module" role="module"
+                                                            data-type="unsubscribe"
+                                                            style="color:#444444; font-size:12px; line-height:20px; padding:16px 16px 16px 16px; text-align:center;"
+                                                            data-muid="856fcf70-bed5-44cd-a988-0d58b3d2a90e">
+                                                            <div class="Unsubscribe--addressLine"></div>
+                                                            <p style="font-size:12px; line-height:20px;"><a
+                                                                    class="Unsubscribe--unsubscribeLink"
+                                                                    href="{{{unsubscribe}}}" target="_blank"
+                                                                    style="">Unsubscribe</a> - <a
+                                                                    href="{{{unsubscribe_preferences}}}" target="_blank"
+                                                                    class="Unsubscribe--unsubscribePreferences"
+                                                                    style="">Unsubscribe Preferences</a></p>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <!--[if mso]>
+                                  </td>
+                                </tr>
+                              </table>
+                            </center>
+                            <![endif]-->
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</center>
+
+                                <a href="email-compose.html" class="btn btn-primary waves-effect m-t-30"><i
+                                        class="mdi mdi-reply"></i> Reply</a>
+                                <a href="email-inbox.html" class="btn btn-danger waves-effect m-t-30">Forward <i
+                                        class="mdi mdi-share"></i></a>
+                            </div>
+
+
+
+                        </div>
+                        <!-- card -->
+
+
+                    </div>
+                    <!-- end Col-9 -->
+
+                </div>
+
+            </div>
+            <!-- End row -->
+
+        </div>
+        <!-- end container-fluid -->
+    </div>
+    <!-- end wrapper -->
+
+    <!-- Footer -->
+    <footer class="footer">
+        © 2019 - 2020 Asomboroso
+    </footer>
+
+    <!-- End Footer -->
+
+    <!-- jQuery  -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <script src="js/jquery.slimscroll.js"></script>
+    <script src="js/waves.min.js"></script>
+
+    <!-- App js -->
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>

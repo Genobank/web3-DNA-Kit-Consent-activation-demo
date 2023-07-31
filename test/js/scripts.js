@@ -1,5 +1,5 @@
 // Global variables
-const wallet = ethers.Wallet.createRandom();
+let wallet = ethers.Wallet.createRandom();
 generatePhrase = wallet.mnemonic.phrase;
 generatePrivatekey = wallet.privateKey;
 generateAddress = wallet.address;
@@ -15,9 +15,7 @@ var biosampleId = null;
 var permiteeId = null;
 var physicalId = null;
 var biosampleSecret = null;
-var timestamp = null;
-// todays date
-var timestamp = Date.now();
+
 // todays date
 var d = new Date();
 
@@ -29,8 +27,6 @@ var signatureDate =
   ((''+month).length<2 ? '0' : '') + month + '-' +
   ((''+day).length<2 ? '0' : '') + day ;
 
-
-
 // grab url query data
 emptyUrl = window.location.href.indexOf('?')
 checklabID = function () {
@@ -40,17 +36,30 @@ checklabID = function () {
 	}  else {
 		$('#randomVisitor').modal('hide');
 		$('#invalidError').modal('hide');
-		
-		
-
 		biosampleSecret = window.location.hash.substr(1);
 		biosampleId = new URL(pageURL).searchParams.get("biosampleId");
 		permiteeId = new URL(pageURL).searchParams.get("laboratoryId");
 		physicalId = new URL(pageURL).searchParams.get("physicalId");
+
+		
    
 		$('.btn-gotoConsent').append(' <span class="xxs gbid">#' + biosampleId +'</span>');
 	}
 }
+
+
+$(async function() {
+	const labProfile = await getLaboratoryProfile();
+	if (!labProfile.data) {
+		console.error("Error:", laboratory);
+		alert('Invalid laboratory');
+		throw new Error('Invalid laboratoryId')
+		return;
+	}
+	text = JSON.parse(labProfile.data.text);
+	console.log(text);
+	$(".lab-name").text(`${text.name}`)
+})
 
 /**
  * Retrieves laboratory identity object.
@@ -62,6 +71,24 @@ async function getLaboratory() {
 		throw new Error("Invalid laboratory");
 	}
 	return fetch(`${window.API_BASE}/permittees/${laboratoryId}`, {
+		method: 'GET',
+		headers: {
+			"Content-type": "application/json; charset=UTF-8"
+		},
+	}).then((res) => {
+		return res.json();
+	}).catch((e) => {
+		return { errors: [{message: e }]};
+	});
+}
+
+async function getLaboratoryProfile() {
+	const url = new URL(location.href);
+	const laboratoryId = url.searchParams.get("laboratoryId");
+	if (!laboratoryId) {
+		throw new Error("Invalid laboratory");
+	}
+	return fetch(`${window.API_BASE}/profiles/${laboratoryId}`, {
 		method: 'GET',
 		headers: {
 			"Content-type": "application/json; charset=UTF-8"
@@ -193,7 +220,7 @@ function getConsentData() {
  */
 async function uploadConsent(physicalId, address, permiteeAddress, claim, signature, metadata) {
 	const str = JSON.stringify({ physicalId, address, claim, signature }, null, 2);
-    const blob = new Blob([str], { type: 'application/json' });
+  const blob = new Blob([str], { type: 'application/json' });
 	const body  = new FormData();
 	body.append('physicalId', physicalId);
 	body.append('address', address);
@@ -244,20 +271,31 @@ async function claimBiosample() {
   const dataArray = ethers.utils.arrayify(data);
   const signature = await wallet.signMessage(dataArray);
 
-	const response = await fetch(`${window.API_BASE}/claim/${tokenID.substring(2)}`, {
+	console.log(tokenID.substring(2))
+	console.log(biosampleSecret)
+	console.log(signature)
+	console.log(seed)
+
+
+// new implementation
+	const response = await fetch(`${window.NEW_API_BASE}/claim/${tokenID.substring(2)}`, {
 		method: 'POST',
 		headers: {
 			"Content-type": "application/json; charset=UTF-8"
 		},
 		body: JSON.stringify({
-      biosampleSecret,	
-      signature,
-      seed,
-      signatureKind: 1
-    }),
-  });
+			biosampleSecret,	
+			signature,
+			seed,
+			signatureKind: 1
+			}),
+		});
+  
   return response.json()
+
+
 }
+
 
 $.fn.shuffle = function () {
 	return this.each(function () {
@@ -337,7 +375,6 @@ $checkSum = function () {
 // 	}
 // let animationSkipForward2 =  bodymovin.loadAnimation(params);
 
-
 let params3 = {
 	container: document.querySelector('.lottie-bar2'),
 	renderer: 'svg',
@@ -382,7 +419,7 @@ $readDeviceOrientation = function () {
 //Check counter
 $checkCounter = function () {
 	if (counter >= 2) {
-
+		
 		$('.step1').hide();
 		$('.step2').fadeIn();
 		$(this).off();
@@ -436,8 +473,8 @@ clearInput = function () {
 $(async function () {
 
 	$('.btn-restart').on("click", function (e){
-		location.reload();
-		});
+	location.reload();
+	});
 
 	$('#signatureDate').val(signatureDate);
 
@@ -453,7 +490,7 @@ $(async function () {
 		$('html,body').animate({ scrollTop: $(aid).offset().top }, 'slow');
 	});
 
-// Check if the biosample has not beeen activated.
+	// Check if the biosample has not beeen activated.
 	await fetch(`${window.API_BASE}/biosamples/${biosampleId}`, {
 		method: 'GET',
 		headers: {
@@ -480,14 +517,14 @@ $(async function () {
 		$('.js-signature').jqSignature('clearCanvas');
 	});
 
-	$('.btn-gotostep0').on("click", async function () { // agree with terms
+	$('.btn-gotostepoptions').on("click", async function () { // agree with terms
 		const data = getConsentData();
 		const laboratory = await getLaboratory();
 		if (!laboratory.data) {
 			console.error("Error:", laboratory);
 			alert('Invalid laboratory');
 			return;
-		} 
+		}
     const publicKey = await getPublicKey(laboratory.data.owner);
     if (!publicKey.data) {
       console.error("Error:", publicKey);
@@ -497,10 +534,10 @@ $(async function () {
 
 		const claim = await encryptConsent(data, publicKey.data.key);
 		const signature = await signConsent(wallet, claim); // sign form data
-	const pkSignature = await signPublicKeyMessage(wallet);
-	await createPublicKey(pkSignature.signature, pkSignature.signatureKind);
+    const pkSignature = await signPublicKeyMessage(wallet);
+    await createPublicKey(pkSignature.signature, pkSignature.signatureKind);
 
-const metadata = {
+    const metadata = {
       fileName: 'consent.json',
       fileType: 'application/json'
     }
@@ -512,11 +549,10 @@ const metadata = {
 			laboratory.data.owner,
 			claim,
 			signature,
-			encryptedMetadata
+      encryptedMetadata
 		).then(() => { // continue
 			$('.consent').hide();
-			$('.step0').fadeIn();
-			document.body.requestFullscreen();
+			$('.stepOptions').fadeIn();
 		}).catch((e) => { // unexpected error
 			console.error("Error:", e);
 		});
@@ -527,8 +563,23 @@ const metadata = {
 		$('.step1').fadeIn();
 
 
-
 	});
+
+
+
+	$('.btn-gotoimportwallet').on("click", function () {
+		$('.step0').hide();
+		$('.importwallet').fadeIn();
+		// document.body.requestFullscreen();
+	});
+	$('.btn-gotostep0').on("click", function () {
+		$('.consent').hide();
+		$('.step0').fadeIn();
+		document.body.requestFullscreen();
+	});
+
+
+
 
 	//Step1 - create phras
 	$('.btn-gotostep2').on("click", function () {
@@ -562,10 +613,12 @@ const metadata = {
 
 			if ($matchArray) {
 				$('.step3').hide();
-      			$('.step4').fadeIn();
+      	$('.step4').fadeIn();
       
 				//Signing a message to blockcahin
 				const data = await claimBiosample();
+  				console.log("response: ",data)
+
 				if (data.data) {
 					const txHash1 = data.data.transactions[0].transactionHash;
 					const txHash2 = data.data.transactions[1].transactionHash;
@@ -578,22 +631,16 @@ const metadata = {
 							`<h3>Success! Kit is Activated</h3>
 							<p>Do not lose your 12 word passphrase. It controls access to your biosample</p>
 							<p class="text-center mt-3 mb-0"> View Transactions:  </p> 
-							<a id="txLink" href="https://rinkeby.etherscan.io/tx/${txHash1}" target="_blank">    
+							<a id="txLink" href="https://testnet.snowtrace.io//tx/${txHash1}" target="_blank">    
 								<p class="text-center mb-3 tansaction">
 								${txHash1}
 								</p>
 							</a>
-							<a id="txLink" href="https://rinkeby.etherscan.io/tx/${txHash2}" target="_blank">    
+							<a id="txLink" href="https://testnet.snowtrace.io/tx/${txHash2}" target="_blank">    
 								<p class="text-center mb-3 tansaction">
 								${txHash2}
 								</p>
 							</a>
-							<div class="row justify-content-center">
-								<div class="col-12 my-2">
-									<a href="https://app.somosancestria.com/watch?biosampleId=${biosampleId}&timestamp=${data.data.timestamp}&signature=${data.data.signature}" id="addBlockchain"
-									target="_blank" class=" btn btn-primary  btn-shadow btn-gotostep4">Continue</a>
-								</div>
-                   			</div>	
 						`);
 					}, 2000);
 				} else if (data.errors) {
@@ -617,4 +664,73 @@ const metadata = {
 			}
 		});
 	});
+
+
+	$(".btn-importwallet").on("click", async function () {
+		$('.error-section').hide()
+		arr2 = [];
+		
+
+		$(async function() {
+			$('.validateimportedphrase li input').each(function () {
+				arr2.push($(this).val());
+			});
+			try{
+				mnemonicwords = arr2.join(' ');
+				wallet = ethers.Wallet.fromMnemonic(mnemonicwords)
+				generateAddress = wallet.address
+
+				$('.importwallet').hide();
+				$('.step4').fadeIn();
+			
+				//Signing a message to blockcahin
+				const data = await claimBiosample();
+
+				if (data.data) {
+					const txHash1 = data.data.transactions[0].transactionHash;
+					const txHash2 = data.data.transactions[1].transactionHash;
+					
+					animationSkipForward4.playSegments([0, 118], true);
+					
+					setTimeout(async function() {
+						animationSkipForward3.playSegments([0, 29], true);	
+						$('#tx').html(
+							`<h3>Success! Kit is Activated</h3>
+							<p>Do not lose your 12 word passphrase. It controls access to your biosample</p>
+							<p class="text-center mt-3 mb-0"> View Transactions:  </p> 
+							<a id="txLink" href="https://testnet.snowtrace.io//tx/${txHash1}" target="_blank">    
+								<p class="text-center mb-3 tansaction">
+								${txHash1}
+								</p>
+							</a>
+							<a id="txLink" href="https://testnet.snowtrace.io/tx/${txHash2}" target="_blank">    
+								<p class="text-center mb-3 tansaction">
+								${txHash2}
+								</p>
+							</a>
+						`);
+					}, 2000);
+				} else if (data.errors) {
+					switch (data.errors[0].code) {
+						case 400001:
+							alert('Activation link invalid or revoked.');
+							break;
+						default:
+							alert(data.errors[0].message);
+					}
+				} else {
+					alert('Error');
+				}
+
+
+			}catch(e) {
+				$('.error_message').html(e.message);
+				$('.error-section').show()
+				console.error(e);
+			}
+
+
+		});
+	});
+
 });
